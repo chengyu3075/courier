@@ -2,6 +2,9 @@ package com.sandy.courier.graph;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +24,7 @@ import com.sandy.courier.graph.biz.IGraphDataBiz;
  **/
 public class IGraphDataBizTest extends CourierApplicationTest {
 
+    ExecutorService executorService = Executors.newFixedThreadPool(10);
     @Autowired
     private IGraphDataBiz graphDataBiz;
 
@@ -32,11 +36,15 @@ public class IGraphDataBizTest extends CourierApplicationTest {
         if (System.getProperty("os.name").equalsIgnoreCase("linux")) {
             filePath = "/root/software/triples.txt";
         }
-        System.setProperty(KgDgraphClient.DGRAPH_ALPHA_HOST, "10.110.13.28:9080,10.110.13.56:9080,10.110.14.239:9080");
+        // 10.110.13.28:9080,10.110.13.56:9080,10.110.14.239:9080
+        System.setProperty(KgDgraphClient.DGRAPH_ALPHA_HOST, "localhost:9080");
         Long begin = System.currentTimeMillis();
-        Integer aLong = FileUtil.readLines(filePath, new DgraphMutationTextLineProcessor(400L, 20));
+        Integer aLong = FileUtil.readLines("C:\\Users\\chengyu3\\Desktop\\triple.txt",
+                new DgraphMutationTextLineProcessor(10000L, 1));
         System.out.println("count:" + aLong);
         System.out.println("time spent:" + (System.currentTimeMillis() - begin) + "");
+        executorService.shutdown();
+        executorService.awaitTermination(1l, TimeUnit.HOURS);
     }
 
     public class DgraphMutationTextLineProcessor implements LineProcessor<Integer> {
@@ -90,8 +98,14 @@ public class IGraphDataBizTest extends CourierApplicationTest {
             if (batchSize > triples.size()) {
                 return true;
             }
-            graphDataBiz.batchSaveTripleWithTab(triples, "Category", "rel_name");
-            triples.clear();
+            for (int i = 0; i < 10; i++) {
+                executorService.execute(() -> {
+                    graphDataBiz.batchSaveTripleWithTab(triples, "Category", "rel_name");
+                });
+            }
+            // graphDataBiz.batchSaveTripleWithTab(triples, "Category",
+            // "rel_name");
+            // triples.clear();
             return true;
         }
 
