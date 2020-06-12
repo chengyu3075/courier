@@ -18,7 +18,8 @@ public class IGraphSchemaBizTest extends CourierApplicationTest {
 
     @Test
     public void testAddProperty() throws Exception {
-        final String schema = "xid: string @index(exact) .";
+        System.setProperty(KgDgraphClient.DGRAPH_ALPHA_HOST, "localhost:9080");
+        final String schema = "name: string @index(rune) .";
         graphSchemaBiz.addProperty(schema);
     }
 

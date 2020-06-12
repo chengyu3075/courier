@@ -98,14 +98,14 @@ public class IGraphDataBizTest extends CourierApplicationTest {
             if (batchSize > triples.size()) {
                 return true;
             }
-            for (int i = 0; i < 10; i++) {
-                executorService.execute(() -> {
-                    graphDataBiz.batchSaveTripleWithTab(triples, "Category", "rel_name");
-                });
-            }
+            // for (int i = 0; i < 10; i++) {
+            // executorService.execute(() -> {
             // graphDataBiz.batchSaveTripleWithTab(triples, "Category",
             // "rel_name");
-            // triples.clear();
+            // });
+            // }
+            graphDataBiz.batchSaveTripleWithTab(triples, "Category", "rel_name");
+            triples.clear();
             return true;
         }
 

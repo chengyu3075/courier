@@ -4,9 +4,11 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sandy.CourierApplication;
 import com.sandy.courier.common.util.KgDgraphClient;
+import com.sandy.courier.graph.biz.IGraphDataBiz;
 
 import io.dgraph.DgraphClient;
 import io.dgraph.DgraphProto;
@@ -18,6 +20,9 @@ import io.dgraph.Transaction;
  **/
 public class GraphTransactionTest extends CourierApplication {
 
+    @Autowired
+    private IGraphDataBiz graphDataBiz;
+
     /**
      * 读未提交测试
      * 
@@ -26,7 +31,7 @@ public class GraphTransactionTest extends CourierApplication {
      * @author: chengyu3
      */
     public void testRu() throws Exception {
-
+        graphDataBiz.saveWithRdf("");
     }
 
     /**

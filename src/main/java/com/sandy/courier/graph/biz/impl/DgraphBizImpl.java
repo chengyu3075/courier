@@ -78,13 +78,13 @@ public class DgraphBizImpl extends AbstractDgraphBiz implements IGraphDataBiz {
             String dstNodeName = StringUtil.escape(split[2]);
 
             if (!aliasMap.containsKey(srcNodeName)) {
-                queryBuffer.append("src" + i + "(func: eq(" + property_name + ", \"" + srcNodeName + "\")) {\n"
-                        + "        src" + i + " as uid\n" + " }\n");
+                queryBuffer.append("src" + i + "(func: eq(" + property_name + ", \"" + srcNodeName
+                        + "\")) @filter(type(" + typeName + ")){\n" + "        src" + i + " as uid\n" + " }\n");
                 aliasMap.put(srcNodeName, "src" + i);
             }
             if (!aliasMap.containsKey(dstNodeName)) {
-                queryBuffer.append("dst" + i + "(func: eq(" + property_name + ", \"" + dstNodeName + "\")) {\n"
-                        + "        dst" + i + " as uid\n" + "    }\n");
+                queryBuffer.append("dst" + i + "(func: eq(" + property_name + ", \"" + dstNodeName
+                        + "\")) @filter(type(" + typeName + ")) {\n" + "        dst" + i + " as uid\n" + "    }\n");
                 aliasMap.put(dstNodeName, "dst" + i);
             }
         }

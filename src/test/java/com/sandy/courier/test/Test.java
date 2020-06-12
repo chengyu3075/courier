@@ -1,5 +1,6 @@
 package com.sandy.courier.test;
 
+import java.util.Arrays;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -10,6 +11,24 @@ import java.util.concurrent.BlockingQueue;
 public class Test {
 
     public static void main(String[] args) {
+        Integer[] array = new Integer[] { 4, 2, 5, 3, 8, 6, 8, 2, 9, 11, 45, 23, 1, 56, 34, 22 };
+        System.out.println(Arrays.asList(bubbleSort(array)));
+    }
+
+    public static Integer[] bubbleSort(Integer[] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i] < array[j]) {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        return array;
+    }
+
+    public static void queueInterruptTest() {
         BlockingQueue<String> queue = new ArrayBlockingQueue<String>(100);
         Thread t1 = new Thread(new Runnable() {
             @Override

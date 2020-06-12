@@ -45,7 +45,8 @@ public abstract class AbstractDgraphBiz {
 
     private void mutationWithTransaction(DgraphProto.Request request, Integer retryTimes) {
         try {
-            KgDgraphClient.getClient().newTransaction().doRequest(request);
+            DgraphProto.Response response = KgDgraphClient.getClient().newTransaction().doRequest(request);
+            System.out.println(response);
         } catch (Exception e) {
             KgDgraphClient.resetClientIfNessasery(e);
             if (retryTimes > 0) {
