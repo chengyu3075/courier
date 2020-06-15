@@ -3,6 +3,8 @@ package com.sandy.courier.graph.service;
 import java.util.List;
 import java.util.Map;
 
+import com.sandy.courier.graph.bean.GraphNodeBean;
+
 /**
  * @Description: @createTime：2020/6/11 14:20
  * @author: chengyu3
@@ -10,11 +12,13 @@ import java.util.Map;
 
 public interface IGraphDataService {
 
-    String saveEntity(String categoryName, Map<String, Object> values);
+    String saveEntity(String categoryName, Map<String, Object> value);
 
-    Map<String, String> batchSaveEntities();
+    void batchSaveEntities(String categoryName, List<Map<String, Object>> values);
 
-    void createRelation(String srcId, String dstId, String relName);
+    void saveRelation(String srcId, String dstId, Map<String, Map<String, Object>> relations);
+
+    void mergePropsAndRel(GraphNodeBean srcNode, GraphNodeBean dstNode, Map<String, Map<String, Object>> relations);
 
     void delEntity(String entityId);
 

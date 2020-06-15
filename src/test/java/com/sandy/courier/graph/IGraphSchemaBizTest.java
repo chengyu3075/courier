@@ -27,6 +27,6 @@ public class IGraphSchemaBizTest extends CourierApplicationTest {
     public void testDropAll() throws Exception {
         // 10.110.13.28:9080,10.110.14.239:9080,10.110.13.56:9080
         System.setProperty(KgDgraphClient.DGRAPH_ALPHA_HOST, "localhost:9080");
-        graphSchemaBiz.dropAllData(false);
+        graphSchemaBiz.dropAllData(true);
     }
 }
