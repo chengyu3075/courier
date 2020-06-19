@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sandy.courier.common.exception.GraphDbException;
-import com.sandy.courier.graph.bean.GraphPropertyBean;
-import com.sandy.courier.graph.bean.GraphTypeBean;
+import com.sandy.courier.graph.bean.GraphNodeTypeBean;
 import com.sandy.courier.graph.biz.AbstractDgraphBiz;
 import com.sandy.courier.graph.biz.IGraphSchemaBiz;
 
@@ -16,10 +15,6 @@ import com.sandy.courier.graph.biz.IGraphSchemaBiz;
  **/
 @Service
 public class DgraphSchemaImpl extends AbstractDgraphBiz implements IGraphSchemaBiz {
-    @Override
-    public void createType(String type, List<GraphPropertyBean> propertyBeans) throws GraphDbException {
-
-    }
 
     @Override
     public void deleteType(String type) throws GraphDbException {
@@ -27,7 +22,7 @@ public class DgraphSchemaImpl extends AbstractDgraphBiz implements IGraphSchemaB
     }
 
     @Override
-    public List<GraphTypeBean> findType(String type) throws GraphDbException {
+    public List<GraphNodeTypeBean> findType(String type) throws GraphDbException {
         return null;
     }
 

@@ -3,25 +3,26 @@ package com.sandy.courier.graph.bean;
 import java.util.List;
 
 /**
- * @Description: @createTime：2020/6/18 10:40
+ * @Description: @createTime：2020/5/20 11:17
  * @author: chengyu3
  **/
-public class GraphRelationBean {
+public class GraphEntityBean {
+
     /**
-     * 名称
+     * 类型名称
      */
-    public String name;
+    private String typeName;
     /**
      * 属性
      */
-    public List<GraphPropBean> props;
+    private List<GraphPropBean> props;
 
-    public String getName() {
-        return name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public List<GraphPropBean> getProps() {
@@ -31,5 +32,4 @@ public class GraphRelationBean {
     public void setProps(List<GraphPropBean> props) {
         this.props = props;
     }
-
 }

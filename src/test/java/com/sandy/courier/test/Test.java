@@ -9,10 +9,20 @@ import java.util.concurrent.BlockingQueue;
  * @author: chengyu3
  **/
 public class Test {
+    /**
+     * 数据未变化标识-带引号
+     */
+    public static final String NOT_CHANGE_TAG = "'kg_no_change'";
+    /**
+     * 数据未变化标识
+     */
+    public static final String KG_NO_CHANGE_TAG = NOT_CHANGE_TAG.replace("'", "");
 
     public static void main(String[] args) {
         Integer[] array = new Integer[] { 4, 2, 5, 3, 8, 6, 8, 2, 9, 11, 45, 23, 1, 56, 34, 22 };
         System.out.println(Arrays.asList(bubbleSort(array)));
+
+        System.out.println(NOT_CHANGE_TAG + "," + KG_NO_CHANGE_TAG);
     }
 
     public static Integer[] bubbleSort(Integer[] array) {
