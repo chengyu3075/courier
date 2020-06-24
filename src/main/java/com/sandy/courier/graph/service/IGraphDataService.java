@@ -23,6 +23,8 @@ public interface IGraphDataService {
      */
     String saveEntity(String typeName, List<GraphPropBean> props);
 
+    void batchSaveEntity(List<GraphEntityBean> entityBeans);
+
     /**
      * 保存关系
      * 
@@ -112,7 +114,6 @@ public interface IGraphDataService {
      * 
      * @param typeName
      * @param propName
-     * @param value
      * @param relName
      * @return java.util.List<com.sandy.courier.graph.bean.GraphNodeBean> @createTime：2020/6/19
      *         17:30

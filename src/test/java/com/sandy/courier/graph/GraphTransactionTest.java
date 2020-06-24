@@ -20,6 +20,11 @@ import io.dgraph.Transaction;
  **/
 public class GraphTransactionTest extends CourierApplication {
 
+    String s = "mutation {\n" + "  addReview(input: [{\n" + "    by: {username: \"Michael\"}, \n"
+            + "    about: { productID: \"0x2\"}, \n"
+            + "    comment: \"Fantastic, easy to install, worked great.  Best GraphQL server available\",\n"
+            + "    rating: 10}]) \n" + "  {\n" + "    review {\n" + "      comment\n" + "      rating\n"
+            + "      by { username }\n" + "      about { name }\n" + "    }\n" + "  }\n" + "}";
     @Autowired
     private IGraphDataBiz graphDataBiz;
 
